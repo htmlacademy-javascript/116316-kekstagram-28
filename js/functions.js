@@ -28,11 +28,16 @@ const getNumberFromString = (str) => {
 };
 
 const foo = (str, minLength, addStr) => {
-  let result = '';
-
-  for (let i = 0; i < minLength; i++) {
-    result += addStr;
+  if (str.length >= minLength) {
+    console.log(str);
+    return;
   }
+
+  addStr = addStr.slice(0, minLength - str.length);
+  console.log(addStr);
 }
 
 foo('1', 4, '0');
+foo('qwerty', 4, '0');
+foo('q', 4, 'werty');
+foo('q', 4, 'we');
