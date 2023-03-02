@@ -8,7 +8,7 @@ const checkPalindrome = (str) => {
   str = str.trim().replaceAll(' ', '');
 
   for (let i = str.length - 1; i >= 0; i--) {
-    reverseStr += str.at(i);
+    reverseStr += str[i];
   }
 
   return reverseStr.toLowerCase() === str.toLowerCase();
@@ -27,17 +27,34 @@ const getNumberFromString = (str) => {
   return parseInt(result, 10);
 };
 
-const foo = (str, minLength, addStr) => {
+// Функция, которая возвращает исходную строку, дополненную указанными символами до заданной длины.
+const complementString = (str, minLength, addStr) => {
+  let resultAddString = '';
+  const resultAddStrLength = minLength - str.length;
+
   if (str.length >= minLength) {
-    console.log(str);
-    return;
+    return str;
   }
 
-  addStr = addStr.slice(0, minLength - str.length);
-  console.log(addStr);
-}
+  if (addStr.length > resultAddStrLength) {
+    addStr = addStr.slice(0, resultAddStrLength);
 
-foo('1', 4, '0');
-foo('qwerty', 4, '0');
-foo('q', 4, 'werty');
-foo('q', 4, 'we');
+    return addStr + str;
+  }
+
+  while (resultAddString.length < resultAddStrLength) {
+    for (let i = 0; i <= addStr.length; i++) {
+      if (resultAddString.length === resultAddStrLength) {
+        break;
+      }
+
+      resultAddString += addStr.slice(0, i);
+      console.log(`0, ${i} -` + addStr.slice(0, i));
+    }
+  }
+
+  return resultAddString + str;
+};
+
+const foo1 = complementString('q', 5, '3we');
+console.log(foo1);
