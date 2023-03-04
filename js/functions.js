@@ -1,26 +1,36 @@
 // Функция для проверки длины строки
-const checkStringLength = (str, maxLength) => str.length <= maxLength;
+const isLessOrEqual = (string, length) => string.length <= length;
 
 // Функция для проверки, является ли строка палиндромом
-const checkPalindrome = (str) => {
-  let reverseStr = '';
+const isPalindrome = (string) => {
+  const cleanString = string
+    .toLowerCase()
+    .replaceAll(' ', '');
 
-  str = str.trim().replaceAll(' ', '');
+  let reverseString = '';
 
-  for (let i = str.length - 1; i >= 0; i--) {
-    reverseStr += str[i];
+  for (let i = cleanString.length - 1; i >= 0; i--) {
+    reverseString += cleanString.at(i);
   }
 
-  return reverseStr.toLowerCase() === str.toLowerCase();
+  return reverseString === cleanString;
 };
 
 // Функция, которая принимает строку, извлекает содержащиеся в ней цифры от 0 до 9 и возвращает их в виде целого положительного числа.
-const getNumberFromString = (str) => {
+const getNumberFromString = (string) => {
+  if (typeof string === 'number') {
+    const parseNumber = string
+      .toString(10)
+      .replaceAll('.', '');
+
+    return Math.abs(parseInt(parseNumber, 10));
+  }
+
   let result = '';
 
-  for (let i = 0; i < str.length; i++) {
-    if (!isNaN(parseInt(str[i], 10))) {
-      result += str[i];
+  for (let i = 0; i < string.length; i++) {
+    if (!isNaN(parseInt(string[i], 10))) {
+      result += string.at(i);
     }
   }
 
@@ -28,31 +38,25 @@ const getNumberFromString = (str) => {
 };
 
 // Функция, которая возвращает исходную строку, дополненную указанными символами до заданной длины.
-const padString = (str, minLength, addStr) => {
-  const resultAddStrLength = minLength - str.length;
+const padString = (string, length, pad) => {
+  const actualPadLength = length - string.length;
 
-  if (str.length >= minLength) {
-    return str;
-  }
-
-  if (addStr.length > resultAddStrLength) {
-    addStr = addStr.slice(0, resultAddStrLength);
-
-    return addStr + str;
+  if (string.length >= length) {
+    return string;
   }
 
   let resultAddString = '';
   let count = 0;
 
-  while (count < resultAddStrLength) {
+  while (count < actualPadLength) {
     let tempStr = '';
 
-    for (let i = 0; i <= addStr.length - 1; i++) {
-      if (count === resultAddStrLength) {
+    for (let i = 0; i <= pad.length - 1; i++) {
+      if (count === actualPadLength) {
         break;
       }
 
-      tempStr += addStr[i];
+      tempStr += pad.at(i);
       count++;
     }
 
@@ -60,5 +64,5 @@ const padString = (str, minLength, addStr) => {
   }
 
 
-  return resultAddString + str;
+  return resultAddString + string;
 };
