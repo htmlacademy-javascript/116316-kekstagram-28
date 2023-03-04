@@ -28,8 +28,7 @@ const getNumberFromString = (str) => {
 };
 
 // Функция, которая возвращает исходную строку, дополненную указанными символами до заданной длины.
-const complementString = (str, minLength, addStr) => {
-  let resultAddString = '';
+const padString = (str, minLength, addStr) => {
   const resultAddStrLength = minLength - str.length;
 
   if (str.length >= minLength) {
@@ -42,19 +41,24 @@ const complementString = (str, minLength, addStr) => {
     return addStr + str;
   }
 
-  while (resultAddString.length < resultAddStrLength) {
-    for (let i = 0; i <= addStr.length; i++) {
-      if (resultAddString.length === resultAddStrLength) {
+  let resultAddString = '';
+  let count = 0;
+
+  while (count < resultAddStrLength) {
+    let tempStr = '';
+
+    for (let i = 0; i <= addStr.length - 1; i++) {
+      if (count === resultAddStrLength) {
         break;
       }
 
-      resultAddString += addStr.slice(0, i);
-      console.log(`0, ${i} -` + addStr.slice(0, i));
+      tempStr += addStr[i];
+      count++;
     }
+
+    resultAddString = tempStr + resultAddString;
   }
+
 
   return resultAddString + str;
 };
-
-const foo1 = complementString('q', 5, '3we');
-console.log(foo1);
