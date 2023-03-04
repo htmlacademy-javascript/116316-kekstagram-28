@@ -65,3 +65,8 @@ const padString = (string, length, pad) => {
 
   return resultPadString + string;
 };
+
+isLessOrEqual('проверяемая строка', 20);
+isPalindrome('ДовОд');
+getNumberFromString('1 кефир, 0.5 батона');
+padString('q', 4, 'werty');
