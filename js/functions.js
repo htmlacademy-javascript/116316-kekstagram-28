@@ -45,7 +45,7 @@ const padString = (string, length, pad) => {
     return string;
   }
 
-  let resultAddString = '';
+  let resultPadString = '';
   let count = 0;
 
   while (count < actualPadLength) {
@@ -60,9 +60,8 @@ const padString = (string, length, pad) => {
       count++;
     }
 
-    resultAddString = tempStr + resultAddString;
+    resultPadString = tempStr + resultPadString;
   }
 
-
-  return resultAddString + string;
+  return resultPadString + string;
 };
