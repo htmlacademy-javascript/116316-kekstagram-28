@@ -6,9 +6,9 @@ const getRandomInteger = (min, max) => {
   return Math.floor(result);
 };
 
-const getRandomArrayElement = (array) => array[getRandomInteger(0, array.length - 1)];
+const getRandomListElement = (array) => array[getRandomInteger(0, array.length - 1)];
 
-const getRandomArray = (array) => array.filter(() => getRandomInteger(0, 1));
+const getRandomList = (array) => array.filter(() => getRandomInteger(0, 1));
 
 const createRandomIdFromRangeGenerator = (min, max) => {
   const previousValues = [];
@@ -28,4 +28,4 @@ const createRandomIdFromRangeGenerator = (min, max) => {
   };
 };
 
-export {getRandomInteger, getRandomArrayElement, getRandomArray, createRandomIdFromRangeGenerator};
+export {getRandomInteger, getRandomListElement, getRandomList, createRandomIdFromRangeGenerator};

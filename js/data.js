@@ -1,11 +1,11 @@
 import {
-  getRandomArray,
-  getRandomArrayElement,
+  getRandomList,
+  getRandomListElement,
   createRandomIdFromRangeGenerator,
   getRandomInteger} from './utils.js';
 
 const PhotosCount = {
-  MIN: 0,
+  MIN: 1,
   MAX: 25,
 };
 
@@ -63,8 +63,8 @@ const generateComment = () => (
   {
     id: generateCommentId(),
     avatar: getAvatarUrl(),
-    message: getRandomArray(MESSAGES).join(' '),
-    name: getRandomArrayElement(NAMES),
+    message: getRandomList(MESSAGES).join(' '),
+    name: getRandomListElement(NAMES),
   }
 );
 
@@ -72,7 +72,7 @@ const generatePhoto = () => (
   {
     id: generatePhotoId(),
     url: getPhotoUrl(),
-    description: getRandomArray(DESCRIPTIONS).join(' '),
+    description: getRandomList(DESCRIPTIONS).join(' '),
     likes: generateLikes(),
     comments: Array.from({length: getRandomInteger(CommentsCount.MIN, CommentsCount.MAX)}, generateComment),
   }
